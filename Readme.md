@@ -37,6 +37,7 @@ php index.php
 ```
 
 And then incrementally giving operands and operators
+```shell
   > 5
   5
   > 8
@@ -47,7 +48,7 @@ And then incrementally giving operands and operators
   >2 1 12 3 / - +
   -1
   >
----
+```
 
 Available commands in step-by-step mode
 -----------------
