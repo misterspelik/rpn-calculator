@@ -1,0 +1,22 @@
+{
+  "name": "misterspelik/rpn-calculator",
+  "description": "RPN Calculator",
+  "keywords": ["rpn", "calculator", "module", "helper", "cli"],
+  "license": "MIT",
+  "version": "1",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Yaroslav Krutikov",
+      "email": "misterspelik@gmail.com"
+    }
+  ],
+  "require" : {
+    "php": ">=7.1.0"
+  },
+  "autoload": {
+      "psr-4": {
+          "Rpn\\": "src/"
+      }
+  }
+}
