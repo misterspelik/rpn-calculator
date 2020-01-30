@@ -46,8 +46,7 @@ class Validator
 
         $diff = count($numbers) - count($operators);
         if ($diff != 1) {
-            echo 'Number of operators does not match number operands'.PHP_EOL;
-            return false;
+            throw new Exceptions\Validator\InvalidOperatorsNumberException();
         }
 
         return true;
@@ -61,8 +60,7 @@ class Validator
     public function validateArray(array $stack) : bool
     {
         if (count($stack) < 2) {
-            echo 'RPN Calculator requires at least 2 numbers'.PHP_EOL;
-            return false;
+            throw new Exceptions\Validator\InvalidArrayException();
         }
         return true;
     }
@@ -76,7 +74,7 @@ class Validator
     {
         $valid = in_array($operator, self::$acceptableOperators);
         if (!$valid) {
-            echo 'Operation '.$operator.' is not supported'.PHP_EOL;
+            throw new Exceptions\Validator\OperatorNotSupportedException('Operation '.$operator.' is not supported');
         }
         return $valid;
     }
@@ -88,11 +86,11 @@ class Validator
      */
     public static function validateLastSign($sign) : bool
     {
-        if (!self::isValidOperator($sign)) {
-            echo 'RPN Calculator requires the last character to be an operator'.PHP_EOL;
-            return false;
+        try {
+            return self::isValidOperator($sign);
+        } catch (\Rpn\Exceptions\Validator\OperatorNotSupportedException $exception) {
+            throw new Exceptions\Validator\InvalidLastSignException();
         }
-        return true;
     }
 
     /**
@@ -103,8 +101,7 @@ class Validator
     public static function operandCanDivide($operand) : bool
     {
         if ($operand == 0) {
-            echo 'RPN Calculator can`t divide by zero'.PHP_EOL;
-            return false;
+            throw new Exceptions\Validator\DivizionByZeroException();
         }
         return true;
     }

@@ -58,7 +58,7 @@ Available commands in step-by-step mode
 
 ToDo
 ==================
-As far as this is quick solution it is notr well structured. Hope this will be fixed in future.
+As far as this is quick solution it is not well structured. Hope this will be fixed in future.
 Items described below need to be added for package to be finished. Obviously need more time to finish that and hope this could be done in future.
 Or you are welcome to fork and add :)
 

@@ -96,10 +96,9 @@ class Calculator
                 $result = $secondOperand - $firstOperand;
             break;
             case '/':
-                if (!$this->validator->operandCanDivide($firstOperand)){
-                    return null;
+                if ($this->validator->operandCanDivide($firstOperand)){
+                    $result = $secondOperand / $firstOperand;
                 }
-                $result = $secondOperand / $firstOperand;
             break;
             case '*':
                 $result = $secondOperand * $firstOperand;

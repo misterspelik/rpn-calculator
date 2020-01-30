@@ -15,15 +15,17 @@ $calculator = Calculator::getInstance();
 
 $fromCli = Cli::getExpression();
 if (!is_null($fromCli)) {
-    if (!Validator::isValidExpression($fromCli)) {
-        exit(2);
+    try {
+        if (Validator::isValidExpression($fromCli)) {
+            Cli::printResult(
+                $calculator->runExpression($fromCli)
+            );
+            exit(0);
+        }
+    } catch (\Throwable $exception) {
+        Cli::printResult( $exception->getMessage() );
+        exit(1);
     }
-
-    Cli::printResult(
-        $calculator->runExpression($fromCli)
-    );
-
-    exit(0);
 }
 
 $result = '';
@@ -43,11 +45,16 @@ while (!feof(STDIN)) {
         continue;
     }
 
-    if (Validator::isValidExpression($line)) {
+    try {
+        if (Validator::isValidExpression($line)) {
+            $calculator->reset();
+            $result = $calculator->runExpression($line);
+        } else {
+            $result = $calculator->runOperation($line);
+        }
+    } catch (\Throwable $exception) {
         $calculator->reset();
-        $result = $calculator->runExpression($line);
-    } else {
-        $result = $calculator->runOperation($line);
+        $result = $exception->getMessage();
     }
 
     Cli::printResult($result);
