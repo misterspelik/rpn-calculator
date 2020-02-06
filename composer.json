@@ -16,7 +16,11 @@
   },
   "autoload": {
       "psr-4": {
-          "Rpn\\": "src/"
+          "Rpn\\": "src/",
+          "RpnTest\\": "test/"
       }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "8.5.x-dev"
   }
 }

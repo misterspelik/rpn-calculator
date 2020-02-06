@@ -59,7 +59,7 @@ class Validator
      */
     public function validateArray(array $stack) : bool
     {
-        if (count($stack) < 2) {
+        if (count($stack) < 3) {
             throw new Exceptions\Validator\InvalidArrayException();
         }
         return true;
